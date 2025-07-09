@@ -3,7 +3,6 @@ const {ApiError} = require("../utils/ApiError.utils.js");
 const {ApiResponse} = require("../utils/ApiResponse.utils.js");
 const {asyncHandler} = require("../utils/asyncHandler.utils.js");
 
-
 exports.getAbout = asyncHandler(async (req, res) => {
   const about = await About.findOne();
   res

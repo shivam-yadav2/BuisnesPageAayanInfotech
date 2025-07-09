@@ -29,8 +29,12 @@ app.use(limiter);
 
 // routes import
 const adminRouter = require("./routes/admin.routes.js");
+const serviceRouter = require("./routes/service.routes.js");
+const testimonialRouter = require("./routes/testimonial.routes.js");
 
 // // Use Routes
 app.use("/api/v1/admin/", adminRouter);
+app.use("/api/v1/service/", serviceRouter);
+app.use("/api/v1/testimonial/", testimonialRouter);
 
 module.exports = app;

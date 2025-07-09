@@ -8,8 +8,6 @@ const {
   deleteEnquiry,
 } = require("../controllers/enquiry.controller");
 
-
-
 // Enquiry Routes
 router.route("/add").post(createEnquiry);
 router.route("/getAll").get(getAllEnquiries);
