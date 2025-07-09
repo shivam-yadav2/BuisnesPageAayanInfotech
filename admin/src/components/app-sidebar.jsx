@@ -57,7 +57,7 @@ const data = {
     },
     {
       name: "Sliders",
-      url: "#",
+      url: "/dashboard/slider",
       icon: PieChart,
     },
     {
