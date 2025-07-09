@@ -52,7 +52,7 @@ const data = {
   projects: [
     {
       name: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: Frame,
     },
     {
@@ -62,25 +62,25 @@ const data = {
     },
     {
       name: "About",
-      url: "#",
+      url: "/dashboard/about",
       icon: Map,
     },
     {
       name: "Services",
-      url: "#",
+      url: "/dashboard/service",
       icon: Command,
     },
     {
       name: "Testimonials",
-      url: "#",
+      url: "/dashboard/testimonial",
       icon: Frame,
     },
     {
       name: "Contact Enquiry",
-      url: "#",
+      url: "/dashboard/contact-inquiry",
       icon: PieChart,
     },
-    
+
   ],
 }
 
