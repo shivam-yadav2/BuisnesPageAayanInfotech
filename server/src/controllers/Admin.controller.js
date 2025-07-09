@@ -131,7 +131,7 @@ const logoutAdmin = asyncHandler(async (req, res) => {
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
   const incomingRefreshToken =
-    req.cookies.refreshToken || req.body.refreshToken;
+     req.body.refreshToken;
 
   if (!incomingRefreshToken) {
     throw new ApiError(401, "Unauthorized request");
@@ -147,8 +147,9 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     if (!admin) {
       throw new ApiError(401, "Invalid Refresh Token");
     }
+    console.log(incomingRefreshToken, admin)
 
-    if (incomingRefreshToken !== admin?.refreshToken) {
+    if (incomingRefreshToken != admin?.refreshToken) {
       throw new ApiError(401, "Refresh Token is expired");
     }
 

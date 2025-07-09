@@ -73,14 +73,16 @@ const Login = () => {
 
             const response = await axios.request(config);
             const accessToken = response.data?.data?.accessToken; // Assuming the token is in response.data.accessToken
+            const refreshToken = response.data?.data?.refreshToken; // Assuming the token is in response.data.accessToken
             console.log(response?.data?.data)
 
             if (accessToken) {
                 Cookies.set('accessTokenAdmin', accessToken); // Store token in cookie for 7 days
+                Cookies.set('refreshToken', refreshToken); // Store token in cookie for 7 days
                 toast.success("Login successful!");
                 navigate('/dashboard'); // Redirect to dashboard
             } else {
-                toast.error("No access token received.");
+                // toast.error("No access token received.");
             }
 
         } catch (error) {

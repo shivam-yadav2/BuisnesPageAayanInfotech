@@ -14,6 +14,9 @@ const AdminSchema = new Schema(
       type: String,
       required: [true, "Password is Required"],
     },
+    refreshToken: {
+      type:String
+    }
   },
   { timestamps: true }
 );

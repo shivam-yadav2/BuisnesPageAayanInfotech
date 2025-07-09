@@ -66,6 +66,7 @@ const errorHandler = (err, req, res, next) => {
       value: err.value
     }];
   }
+    
 
   // MongoDB Connection Errors
   else if (err.name === 'MongoNetworkError' || err.name === 'MongoTimeoutError') {
@@ -87,6 +88,8 @@ const errorHandler = (err, req, res, next) => {
 
   // Handle non-MongoDB exceptions (unexpected errors)
   else {
+    console.log(err)
+
     statusCode = 500;
     message = "Internal Server Error";
     errors = [];

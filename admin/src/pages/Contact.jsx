@@ -316,7 +316,7 @@ const Contact = () => {
                                     <TableHead>Status</TableHead>
                                     <TableHead>Actions</TableHead>
                                 </TableRow>
-                            </TableHeader>
+                            </TableHeader>  
                             <TableBody>
                                 {filteredEnquiries.map((enquiry) => {
                                     const statusInfo = STATUS_MAP[enquiry.status] || STATUS_MAP.new;
