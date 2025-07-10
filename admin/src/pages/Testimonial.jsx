@@ -29,12 +29,12 @@ const Testimonial = () => {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [selectedTestimonial, setSelectedTestimonial] = useState(null);
     const [formData, setFormData] = useState({
-        altText: "",
-        image: null,
+        name: "",
+        message: "",
     });
     const [updateFormData, setUpdateFormData] = useState({
-        altText: "",
-        image: null,
+        name: "",
+        message: "",
         isActive: true,
     });
 
@@ -52,23 +52,23 @@ const Testimonial = () => {
             const response = await axios.request(config);
             setTestimonialData(response.data.data);
         } catch (error) {
-            toast.error("Failed to fetch testimonial");
+            toast.error("Failed to fetch testimonials");
         }
     };
 
     const handleAddChange = (e) => {
-        const { name, value, files } = e.target;
+        const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
-            [name]: files ? files[0] : value,
+            [name]: value,
         }));
     };
 
     const handleUpdateChange = (e) => {
-        const { name, value, files, type, checked } = e.target;
+        const { name, value, type, checked } = e.target;
         setUpdateFormData((prev) => ({
             ...prev,
-            [name]: type === "checkbox" ? checked : files ? files[0] : value,
+            [name]: type === "checkbox" ? checked : value,
         }));
     };
 
@@ -81,9 +81,10 @@ const Testimonial = () => {
 
         try {
             const Token = Cookies.get("accessTokenAdmin");
-            let data = new FormData();
-            data.append("title", formData.altText);
-            if (formData.image) data.append("image", formData.image);
+            let data = {
+                name: formData.name,
+                message: formData.message,
+            };
 
             let config = {
                 method: "post",
@@ -91,14 +92,14 @@ const Testimonial = () => {
                 url: "http://localhost:4000/api/v1/testimonial/add-testimonial",
                 headers: {
                     Authorization: `Bearer ${Token}`,
-                    "Content-Type": "multipart/form-data",
+                    "Content-Type": "application/json",
                     Accept: "application/json",
                 },
                 data: data,
             };
             const response = await axios.request(config);
             toast.success("Testimonial added successfully");
-            setFormData({ title: "", image: null });
+            setFormData({ name: "", message: "" });
             setAddModalOpen(false);
             fetchTestimonial();
         } catch (error) {
@@ -117,23 +118,18 @@ const Testimonial = () => {
             const Token = Cookies.get("accessTokenAdmin");
             let data = {
                 id: selectedTestimonial._id,
-                title: updateFormData.altText,
-                isActive: updateFormData.isActive
-            }
-            if (updateFormData.image) {
-                data = {
-                    ...data,
-                    image: updateFormData.image
-                }
-            }
+                name: updateFormData.name,
+                message: updateFormData.message,
+                isActive: updateFormData.isActive,
+            };
 
             let config = {
                 method: "post",
                 maxBodyLength: Infinity,
-                url: `http://localhost:4000/api/v1/testimonial/update-testimonial`,
+                url: "http://localhost:4000/api/v1/testimonial/update-testimonial",
                 headers: {
                     Authorization: `Bearer ${Token}`,
-                    "Content-Type": "multipart/form-data",
+                    "Content-Type": "application/json",
                     Accept: "application/json",
                 },
                 data: data,
@@ -156,19 +152,19 @@ const Testimonial = () => {
         try {
             const Token = Cookies.get("accessTokenAdmin");
             let config = {
-                method: "POST",
+                method: "post",
                 maxBodyLength: Infinity,
-                url: `http://localhost:4000/api/v1/testimonial/delete-testimonial`,
+                url: "http://localhost:4000/api/v1/testimonial/delete-testimonial",
                 headers: {
                     Authorization: `Bearer ${Token}`,
+                    "Content-Type": "application/json",
                     Accept: "application/json",
                 },
                 data: {
-                    id: selectedTestimonial._id
-                }
+                    id: selectedTestimonial._id,
+                },
             };
             const response = await axios.request(config);
-            console.log(response)
             toast.success("Testimonial deleted successfully");
             setDeleteModalOpen(false);
             fetchTestimonial();
@@ -176,8 +172,6 @@ const Testimonial = () => {
             toast.error("Failed to delete testimonial");
         }
     };
-
-
 
     useEffect(() => {
         fetchTestimonial();
@@ -187,7 +181,7 @@ const Testimonial = () => {
         <div>
             <Card className="shadow-sm">
                 <CardHeader className="bg-gray-50 border-b flex justify-between items-center">
-                    <CardTitle>Testimonial</CardTitle>
+                    <CardTitle>Testimonials</CardTitle>
                     <Dialog open={addModalOpen} onOpenChange={setAddModalOpen}>
                         <DialogTrigger asChild>
                             <Button>Add Testimonial</Button>
@@ -199,22 +193,24 @@ const Testimonial = () => {
                             <form>
                                 <div className="grid gap-4 py-4">
                                     <div className="grid gap-2">
-                                        <Label>Image</Label>
+                                        <Label>Name</Label>
                                         <Input
-                                            type="file"
-                                            name="image"
-                                            accept="image/*"
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
                                             onChange={handleAddChange}
+                                            placeholder="Testimonial name"
+                                            required
                                         />
                                     </div>
                                     <div className="grid gap-2">
-                                        <Label>Testimonial Alt Text</Label>
+                                        <Label>Message</Label>
                                         <Input
                                             type="text"
-                                            name="altText"
-                                            value={formData.altText}
+                                            name="message"
+                                            value={formData.message}
                                             onChange={handleAddChange}
-                                            placeholder="Testimonial altText"
+                                            placeholder="Testimonial message"
                                             required
                                         />
                                     </div>
@@ -235,17 +231,13 @@ const Testimonial = () => {
                             testimonialData.map((item, index) => (
                                 <Card className="p-2" key={item._id}>
                                     <div>
-                                        <img
-                                            className="rounded-2xl h-[200px] w-full"
-                                            src={`http://localhost:4000/${item?.image}`}
-                                            alt={item?.altText}
-                                        />
                                         <div className="flex justify-between items-center mt-4">
-                                            <h2 className="text-md font-semibold">{item?.altText}</h2>
+                                            <h2 className="text-md font-semibold">{item?.name}</h2>
                                             <Badge variant={item?.isActive ? "secondary" : "destructive"}>
                                                 {item?.isActive ? "Active" : "Inactive"}
                                             </Badge>
                                         </div>
+                                        <p className="text-sm mt-2">{item?.message}</p>
                                         <div className="flex justify-between items-center mt-2">
                                             <Dialog open={deleteModalOpen} onOpenChange={setDeleteModalOpen}>
                                                 <DialogTrigger asChild>
@@ -280,8 +272,8 @@ const Testimonial = () => {
                                                         onClick={() => {
                                                             setSelectedTestimonial(item);
                                                             setUpdateFormData({
-                                                                title: item.altText,
-                                                                image: null,
+                                                                name: item.name,
+                                                                message: item.message,
                                                                 isActive: item.isActive,
                                                             });
                                                         }}
@@ -296,22 +288,23 @@ const Testimonial = () => {
                                                     <form>
                                                         <div className="grid gap-4 py-4">
                                                             <div className="grid gap-2">
-                                                                <Label>Image (optional)</Label>
+                                                                <Label>Name</Label>
                                                                 <Input
-                                                                    type="file"
-                                                                    name="image"
-                                                                    accept="image/*"
+                                                                    type="text"
+                                                                    name="name"
+                                                                    value={updateFormData.name}
                                                                     onChange={handleUpdateChange}
+                                                                    placeholder="Testimonial name"
                                                                 />
                                                             </div>
                                                             <div className="grid gap-2">
-                                                                <Label>Testimonial Name</Label>
+                                                                <Label>Message</Label>
                                                                 <Input
                                                                     type="text"
-                                                                    name="altText"
-                                                                    value={updateFormData.altText}
+                                                                    name="message"
+                                                                    value={updateFormData.message}
                                                                     onChange={handleUpdateChange}
-                                                                    placeholder="Testimonial altText"
+                                                                    placeholder="Testimonial message"
                                                                 />
                                                             </div>
                                                             <div className="flex items-center gap-2">
@@ -344,7 +337,7 @@ const Testimonial = () => {
                                 </Card>
                             ))
                         ) : (
-                            <p>No testimonial available</p>
+                            <p>No testimonials available</p>
                         )}
                     </div>
                 </CardContent>

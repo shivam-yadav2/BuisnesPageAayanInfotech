@@ -4,9 +4,7 @@ const { ApiResponse } = require("../utils/ApiResponse.utils.js");
 const { asyncHandler } = require("../utils/asyncHandler.utils.js");
 
 exports.getTestimonials = asyncHandler(async (req, res) => {
-  const testimonial = await Testimonial.find({
-    isActive: true,
-  });
+  const testimonial = await Testimonial.find();
   res
     .status(200)
     .json(
@@ -52,8 +50,8 @@ exports.updateTestimonial = asyncHandler(async (req, res) => {
 
 exports.deleteTestimonial = asyncHandler(async (req, res) => {
   const { id } = req.body;
-  const Testimonial = await Testimonial.findByIdAndDelete( id );
-  if (!Testimonial) {
+  const testimonial = await Testimonial.findByIdAndDelete( id );
+  if (!testimonial) {
     throw new ApiError(404, "Testimonial not found");
   }
 
