@@ -11,7 +11,7 @@ const { upload } = require("../middelware/multer.middelware.js");
 
 const router = express.Router();
 
-router.route("/get-slider").get(verifyAdminJwt, getSliders);
+router.route("/get-slider").get( getSliders);
 router.route("/add-slider").post(verifyAdminJwt, upload.fields([
   { name: "image", maxCount: 1 },
 ]), addSlider);
