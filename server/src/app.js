@@ -32,12 +32,15 @@ const adminRouter = require("./routes/admin.routes.js");
 const serviceRouter = require("./routes/service.routes.js");
 const testimonialRouter = require("./routes/testimonial.routes.js");
 const sliderRouter = require("./routes/slider.routes.js");
-
+const aboutRouter = require("./routes/about.routes.js");
+const enquiryRouter = require("./routes/enquiry.routes.js");
 
 // // Use Routes
 app.use("/api/v1/admin/", adminRouter);
 app.use("/api/v1/service/", serviceRouter);
 app.use("/api/v1/testimonial/", testimonialRouter);
 app.use("/api/v1/slider/", sliderRouter);
+app.use("/api/v1/about/", aboutRouter);
+app.use("/api/v1/enquiry/", enquiryRouter);
 
 module.exports = app;

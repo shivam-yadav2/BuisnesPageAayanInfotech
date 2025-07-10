@@ -4,6 +4,13 @@ const { ApiResponse } = require("../utils/ApiResponse.utils.js");
 const { asyncHandler } = require("../utils/asyncHandler.utils.js");
 
 exports.getSliders = asyncHandler(async (req, res) => {
+  const sliders = await Slider.find();
+  res
+    .status(200)
+    .json(new ApiResponse(200, sliders, "Sliders fetched successfully"));
+});
+
+exports.getSlidersFront = asyncHandler(async (req, res) => {
   const sliders = await Slider.find({
     isActive: true,
   });

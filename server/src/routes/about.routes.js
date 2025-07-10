@@ -1,18 +1,21 @@
 const express = require("express");
 const {
-  getAbouts,
-  addAbout,
-  updateAbout,
-  deleteAbout,
-  changeActiveStatus,
+  getAbout,
+  addAboutData,
+  updateAboutData,
 } = require("../controllers/about.controller.js");
+const { upload } = require("../middelware/multer.middelware.js");
+
 
 const router = express.Router();
 
-router.route("/get-about").get(getAbouts);
-router.route("/add-about").post(addAbout);
-router.route("/update-about").post(updateAbout);
-router.route("/delete-about").post(deleteAbout);
-router.route("/change-status").post(changeActiveStatus);
+router.route("/get-about").get(getAbout);
+router.route("/add-about").post(upload.fields([
+  { name: "image", maxCount: 1 },
+]),addAboutData);
+router.route("/update-about").post(upload.fields([
+  { name: "image", maxCount: 1 },
+]),updateAboutData);
+
 
 module.exports = router;

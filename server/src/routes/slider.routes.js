@@ -5,6 +5,7 @@ const {
   updateSlider,
   deleteSlider,
   changeActiveStatus,
+  getSlidersFront,
 } = require("../controllers/slider.controller.js");
 const { verifyAdminJwt } = require("../middelware/adminAuth.middelware.js");
 const { upload } = require("../middelware/multer.middelware.js");
@@ -12,6 +13,7 @@ const { upload } = require("../middelware/multer.middelware.js");
 const router = express.Router();
 
 router.route("/get-slider").get( getSliders);
+router.route("/get-user-slider").get( getSlidersFront);
 router.route("/add-slider").post(verifyAdminJwt, upload.fields([
   { name: "image", maxCount: 1 },
 ]), addSlider);

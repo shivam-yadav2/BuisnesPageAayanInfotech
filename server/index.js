@@ -7,7 +7,7 @@ dotenv.config({ path: "./.env" });
 
 // console.log(`PORT from .env: ${process.env.PORT}`);
 
-// app.use(errorHandler);
+app.use(errorHandler);
 
 
 const startServer = async () => {

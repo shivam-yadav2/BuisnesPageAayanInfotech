@@ -10,6 +10,15 @@ exports.getServices = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, service, "Services  fetched successfully"));
 });
 
+exports.getServicesFront = asyncHandler(async (req, res) => {
+  const service = await Service.find({
+    isActive: true,
+  });
+  res
+    .status(200)
+    .json(new ApiResponse(200, service, "Services  fetched successfully"));
+});
+
 exports.addService = asyncHandler(async (req, res) => {
   const { title } = req.body;
 

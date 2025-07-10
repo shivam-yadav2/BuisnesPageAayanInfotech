@@ -1,9 +1,9 @@
 const EnquirySchema = require("../models/enquiry.model.js");
-const {ApiError} = require("../utils/ApiError.utils.js");
-const {ApiResponse} = require("../utils/ApiResponse.utils.js");
-const {asyncHandler} = require("../utils/asyncHandler.utils.js");
+const { ApiError } = require("../utils/ApiError.utils.js");
+const { ApiResponse } = require("../utils/ApiResponse.utils.js");
+const { asyncHandler } = require("../utils/asyncHandler.utils.js");
 
-console.log("Enquiry Model:", EnquirySchema); 
+console.log("Enquiry Model:", EnquirySchema);
 // GET all enquiries
 exports.getAllEnquiries = asyncHandler(async (req, res) => {
   const enquiries = await EnquirySchema.find({ isDeleted: false });
@@ -14,16 +14,15 @@ exports.getAllEnquiries = asyncHandler(async (req, res) => {
 
 // ADD a new enquiry
 exports.createEnquiry = asyncHandler(async (req, res) => {
-  const { name, phone, email, message } = req.body;
-  
- console.log("Request Body:", req.body);
+  const { name, email, message } = req.body;
 
+  console.log("Request Body:", req.body);
 
-  if (!name || !phone) {
-    throw new ApiError(400, "Name and Phone are required");
+  if (!name || !email || !message) {
+    throw new ApiError(400, "Name  , email and message   are required");
   }
 
-  const newEnquiry = await EnquirySchema.create({ name, phone, email, message });
+  const newEnquiry = await EnquirySchema.create({ name, email, message });
 
   res
     .status(201)
@@ -46,4 +45,3 @@ exports.deleteEnquiry = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, null, "Enquiry deleted successfully"));
 });
-

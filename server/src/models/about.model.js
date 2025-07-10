@@ -3,13 +3,9 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const AboutSchema = new Schema(
   {
-    title: {
+    content: {
       type: String,
-      required: [true, "Title is required"],
-    },
-    description: {
-      type: String,
-      required: [true, "Description is Required"],
+      required: [true, "Content is required"],
     },
     image: {
       type: String,

@@ -12,6 +12,17 @@ exports.getTestimonials = asyncHandler(async (req, res) => {
     );
 });
 
+exports.getTestimonialsFront = asyncHandler(async (req, res) => {
+  const testimonial = await Testimonial.find({
+    isActive: true,
+  });
+  res
+    .status(200)
+    .json(
+      new ApiResponse(200, testimonial, "Testimonials  fetched successfully")
+    );
+});
+
 exports.addTestimonial = asyncHandler(async (req, res) => {
   const { name, message } = req.body;
 
