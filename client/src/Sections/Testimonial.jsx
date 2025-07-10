@@ -4,7 +4,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const Testimonial = () => {
+const Testimonial = ({data}) => {
     return (
         <section id='testimonial' className='container mx-auto'>
             <div className='flex flex-col justify-center items-center'>
@@ -37,56 +37,32 @@ const Testimonial = () => {
                             spaceBetween: 15,
                         },
                         1024: {
-                            slidesPerView: 1,
+                            slidesPerView: 2,
                             spaceBetween: 15,
                         },
                         1200: {
-                            slidesPerView: 2,
+                            slidesPerView: 3,
                             spaceBetween: 15,
                         },
                     }}
                     onSwiper={(swiper) => console.log(swiper)}
                 >
-                    <SwiperSlide>
-                        <div class="testimonial">
-                            <h3 class="title">Williamson
-                                <span class="post">- Web Developer</span>
-                            </h3>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet eum excepturi incidunt laudantium nesciunt omnis, provident repudiandae rerum sed! Amet blanditiis eaque eu!
-                            </p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div class="testimonial">
-                            <h3 class="title">Williamson
-                                <span class="post">- Web Developer</span>
-                            </h3>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet eum excepturi incidunt laudantium nesciunt omnis, provident repudiandae rerum sed! Amet blanditiis eaque eu!
-                            </p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div class="testimonial">
-                            <h3 class="title">Williamson
-                                <span class="post">- Web Developer</span>
-                            </h3>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet eum excepturi incidunt laudantium nesciunt omnis, provident repudiandae rerum sed! Amet blanditiis eaque eu!
-                            </p>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div class="testimonial">
-                            <h3 class="title">Williamson
-                                <span class="post">- Web Developer</span>
-                            </h3>
-                            <p class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet eum excepturi incidunt laudantium nesciunt omnis, provident repudiandae rerum sed! Amet blanditiis eaque eu!
-                            </p>
-                        </div>
-                    </SwiperSlide>
+                    {
+                        data?.map((item, index) => (
+                            <SwiperSlide key={index}>
+                                <div className="testimonial">
+                                    <h3 className="title">{item.name}
+                                        <span className="post">- {item.post}</span>
+                                    </h3>
+                                    <p className="description">
+                                        {item.message}
+                                    </p>
+                                </div>
+                            </SwiperSlide>
+                        ))
+                    }
+                    
+                    
 
 
                     <div className="flex w-full  justify-between absolute top-[40%] z-50  gap-4 ">

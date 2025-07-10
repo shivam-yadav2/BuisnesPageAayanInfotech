@@ -7,7 +7,7 @@ import {jwtDecode} from 'jwt-decode';
 
 const MyState = ({ children }) => {
     const isTokenExpire = () => {
-        const accessToken = Cookies.get('accessToken')
+        const accessToken = Cookies.get('accessTokenAdmin')
         console.log(accessToken)
         if (!accessToken) {
             return true

@@ -50,11 +50,11 @@ const data = {
   ],
 
   projects: [
-    {
-      name: "Dashboard",
-      url: "/dashboard",
-      icon: Frame,
-    },
+    // {
+    //   name: "Dashboard",
+    //   url: "/dashboard",
+    //   icon: Frame,
+    // },
     {
       name: "Sliders",
       url: "/dashboard/slider",

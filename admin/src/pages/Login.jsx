@@ -22,7 +22,7 @@ const Login = () => {
         const token = Cookies.get('accessTokenAdmin')
 
         if (token) {
-            navigate('/dashboard')
+            navigate('/dashboard/slider')
             toast.error("You're already logged In")
         }
     }
@@ -80,13 +80,12 @@ const Login = () => {
                 Cookies.set('accessTokenAdmin', accessToken); // Store token in cookie for 7 days
                 Cookies.set('refreshToken', refreshToken); // Store token in cookie for 7 days
                 toast.success("Login successful!");
-                navigate('/dashboard'); // Redirect to dashboard
+                navigate('/dashboard/slider'); // Redirect to dashboard
             } else {
                 // toast.error("No access token received.");
             }
-
         } catch (error) {
-
+            console.log(error)
         }
 
     }

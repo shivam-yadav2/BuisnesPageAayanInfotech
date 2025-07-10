@@ -4,9 +4,10 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const Hero = () => {
+const Hero = ({data}) => {
+    console.log(data)
   return (
-      <div className='h-screen overflow-hidden  text-white'>
+      <div className=' pt-[100px] overflow-hidden  text-white'>
           <Swiper
               loop={true}
               autoplay={{
@@ -42,18 +43,15 @@ const Hero = () => {
               }}
               onSwiper={(swiper) => console.log(swiper)}
           >
-              <SwiperSlide>
-                  <img className='w-full object-contain' src="https://images.unsplash.com/photo-1751013781844-fa6a78089e49?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                  <img className='w-full object-contain' src="https://images.unsplash.com/photo-1751013781844-fa6a78089e49?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                  <img className='w-full object-contain' src="https://images.unsplash.com/photo-1751013781844-fa6a78089e49?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-              </SwiperSlide>
-              <SwiperSlide>
-                  <img className='w-full object-contain' src="https://images.unsplash.com/photo-1751013781844-fa6a78089e49?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-              </SwiperSlide>
+            {
+                data?.map((item, index) => (
+                    <SwiperSlide key={index}>
+                        <img className='w-full object-contain' src={`https://aayan.samadhaangroups.co.in/${item.image}`} alt="" />
+                    </SwiperSlide>
+                ))
+            }
+              
+              
            
 
               {/* <div className="flex w-full  justify-between absolute top-[40%] z-50  gap-4 ">

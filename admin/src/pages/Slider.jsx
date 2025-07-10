@@ -47,7 +47,7 @@ const Slider = () => {
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: "http://localhost:4000/api/v1/slider/get-slider",
+        url: "https://aayan.samadhaangroups.co.in/api/v1/slider/get-slider",
       };
       const response = await axios.request(config);
       setSliderData(response.data.data);
@@ -88,7 +88,7 @@ const Slider = () => {
       let config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: "http://localhost:4000/api/v1/slider/add-slider",
+        url: "https://aayan.samadhaangroups.co.in/api/v1/slider/add-slider",
         headers: {
           Authorization: `Bearer ${Token}`,
           "Content-Type": "multipart/form-data",
@@ -130,7 +130,7 @@ const Slider = () => {
       let config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: `http://localhost:4000/api/v1/slider/update-slider`,
+        url: `https://aayan.samadhaangroups.co.in/api/v1/slider/update-slider`,
         headers: {
           Authorization: `Bearer ${Token}`,
           "Content-Type": "multipart/form-data",
@@ -158,7 +158,7 @@ const Slider = () => {
       let config = {
         method: "POST",
         maxBodyLength: Infinity,
-        url: `http://localhost:4000/api/v1/slider/delete-slider`,
+        url: `https://aayan.samadhaangroups.co.in/api/v1/slider/delete-slider`,
         headers: {
           Authorization: `Bearer ${Token}`,
           Accept: "application/json",
@@ -237,7 +237,7 @@ const Slider = () => {
                   <div>
                     <img
                       className="rounded-2xl h-[200px] w-full"
-                      src={`http://localhost:4000/${item?.image}`}
+                      src={`https://aayan.samadhaangroups.co.in/${item?.image}`}
                       alt={item?.altText}
                     />
                     <div className="flex justify-between items-center mt-4">

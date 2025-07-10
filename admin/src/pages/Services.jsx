@@ -25,7 +25,6 @@ import axios from "axios";
 const Services = () => {
     const [addModalOpen, setAddModalOpen] = useState(false);
     const [updateModalOpen, setUpdateModalOpen] = useState(false);
-    const [activeModalOpen, setActiveModalOpen] = useState(false);
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [selectedService, setSelectedService] = useState(null);
     const [formData, setFormData] = useState({
@@ -47,7 +46,7 @@ const Services = () => {
             let config = {
                 method: "get",
                 maxBodyLength: Infinity,
-                url: "http://localhost:4000/api/v1/service/get-services",
+                url: "https://aayan.samadhaangroups.co.in/api/v1/service/get-services",
             };
             const response = await axios.request(config);
             setServiceData(response.data.data);
@@ -88,7 +87,7 @@ const Services = () => {
             let config = {
                 method: "post",
                 maxBodyLength: Infinity,
-                url: "http://localhost:4000/api/v1/service/add-service",
+                url: "https://aayan.samadhaangroups.co.in/api/v1/service/add-service",
                 headers: {
                     Authorization: `Bearer ${Token}`,
                     "Content-Type": "multipart/form-data",
@@ -130,7 +129,7 @@ const Services = () => {
             let config = {
                 method: "post",
                 maxBodyLength: Infinity,
-                url: `http://localhost:4000/api/v1/service/update-service`,
+                url: `https://aayan.samadhaangroups.co.in/api/v1/service/update-service`,
                 headers: {
                     Authorization: `Bearer ${Token}`,
                     "Content-Type": "multipart/form-data",
@@ -158,7 +157,7 @@ const Services = () => {
             let config = {
                 method: "POST",
                 maxBodyLength: Infinity,
-                url: `http://localhost:4000/api/v1/service/delete-service`,
+                url: `https://aayan.samadhaangroups.co.in/api/v1/service/delete-service`,
                 headers: {
                     Authorization: `Bearer ${Token}`,
                     Accept: "application/json",
@@ -237,7 +236,7 @@ const Services = () => {
                                     <div>
                                         <img
                                             className="rounded-2xl h-[200px] w-full"
-                                            src={`http://localhost:4000/${item?.image}`}
+                                            src={`https://aayan.samadhaangroups.co.in/${item?.image}`}
                                             alt={item?.title}
                                         />
                                         <div className="flex justify-between items-center mt-4">
