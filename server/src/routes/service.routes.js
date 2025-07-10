@@ -11,7 +11,7 @@ const { upload } = require("../middelware/multer.middelware.js");
 
 const router = express.Router();
 
-router.route("/get-services").get(verifyAdminJwt, getServices);
+router.route("/get-services").get( getServices);
 router.route("/add-service").post(verifyAdminJwt, upload.fields([
   { name: "image", maxCount: 1 },
 ]), addService);

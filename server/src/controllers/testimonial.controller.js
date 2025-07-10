@@ -52,7 +52,7 @@ exports.updateTestimonial = asyncHandler(async (req, res) => {
 
 exports.deleteTestimonial = asyncHandler(async (req, res) => {
   const { id } = req.body;
-  const Testimonial = await Testimonial.findByIdAndDelete({ id });
+  const Testimonial = await Testimonial.findByIdAndDelete( id );
   if (!Testimonial) {
     throw new ApiError(404, "Testimonial not found");
   }

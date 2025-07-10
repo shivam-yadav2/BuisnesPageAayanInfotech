@@ -53,13 +53,13 @@ const MyState = ({ children }) => {
     }
 
 
-    useEffect(() => {
-        const val = isTokenExpire()
-        console.log(val)
-        if (val) {
-            refreshAccessToken()
-        }
-    }, [])
+    // useEffect(() => {
+    //     const val = isTokenExpire()
+    //     console.log(val)
+    //     if (val) {
+    //         refreshAccessToken()
+    //     }
+    // }, [])
 
     return (
         <MyContext.Provider

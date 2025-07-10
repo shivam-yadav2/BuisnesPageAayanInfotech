@@ -4,9 +4,7 @@ const { ApiResponse } = require("../utils/ApiResponse.utils.js");
 const { asyncHandler } = require("../utils/asyncHandler.utils.js");
 
 exports.getServices = asyncHandler(async (req, res) => {
-  const service = await Service.find({
-    isActive: true,
-  });
+  const service = await Service.find();
   res
     .status(200)
     .json(new ApiResponse(200, service, "Services  fetched successfully"));
@@ -60,7 +58,7 @@ exports.updateService = asyncHandler(async (req, res) => {
 
 exports.deleteService = asyncHandler(async (req, res) => {
   const { id } = req.body;
-  const service = await Service.findByIdAndDelete({ id });
+  const service = await Service.findByIdAndDelete( id );
   if (!service) {
     throw new ApiError(404, "Service not found");
   }
