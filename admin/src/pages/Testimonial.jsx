@@ -47,7 +47,7 @@ const Testimonial = () => {
             let config = {
                 method: "get",
                 maxBodyLength: Infinity,
-                url: "http://localhost:4000/api/v1/testimonial/get-testimonial",
+                url: " https://aayan.samadhaangroups.co.in/api/v1/testimonial/get-testimonial",
             };
             const response = await axios.request(config);
             setTestimonialData(response.data.data);
@@ -89,7 +89,7 @@ const Testimonial = () => {
             let config = {
                 method: "post",
                 maxBodyLength: Infinity,
-                url: "http://localhost:4000/api/v1/testimonial/add-testimonial",
+                url: " https://aayan.samadhaangroups.co.in/api/v1/testimonial/add-testimonial",
                 headers: {
                     Authorization: `Bearer ${Token}`,
                     "Content-Type": "application/json",
@@ -126,7 +126,7 @@ const Testimonial = () => {
             let config = {
                 method: "post",
                 maxBodyLength: Infinity,
-                url: "http://localhost:4000/api/v1/testimonial/update-testimonial",
+                url: " https://aayan.samadhaangroups.co.in/api/v1/testimonial/update-testimonial",
                 headers: {
                     Authorization: `Bearer ${Token}`,
                     "Content-Type": "application/json",
@@ -154,7 +154,7 @@ const Testimonial = () => {
             let config = {
                 method: "post",
                 maxBodyLength: Infinity,
-                url: "http://localhost:4000/api/v1/testimonial/delete-testimonial",
+                url: " https://aayan.samadhaangroups.co.in/api/v1/testimonial/delete-testimonial",
                 headers: {
                     Authorization: `Bearer ${Token}`,
                     "Content-Type": "application/json",

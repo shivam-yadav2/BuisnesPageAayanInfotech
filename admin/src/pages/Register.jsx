@@ -55,7 +55,7 @@ const Register = () => {
       let config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: "http://localhost:4000/api/v1/admin/login",
+        url: " https://aayan.samadhaangroups.co.in/api/v1/admin/login",
         headers: {
           "Content-Type": "application/json",
         },
